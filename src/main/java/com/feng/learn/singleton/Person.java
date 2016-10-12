@@ -6,6 +6,9 @@ package com.feng.learn.singleton;
 import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicReference;
 
+import com.feng.annotation.thread.NotThreadSafe;
+import com.feng.annotation.thread.ThreadSafe;
+
 /**
  * @author feng
  *
@@ -83,6 +86,7 @@ public class Person implements Serializable {
 
 }
 
+@NotThreadSafe
 class Singleton {
 	private static Singleton instance;
 
@@ -99,6 +103,7 @@ class Singleton {
 
 }
 
+@ThreadSafe(authors = { "zhangzhanfeng" })
 class Singleton2 {
 	private static final Singleton2 instance = new Singleton2();
 
@@ -110,6 +115,7 @@ class Singleton2 {
 	}
 }
 
+@ThreadSafe(authors = { "zhangzhanfeng" })
 class Singleton3 {
 	private static class InstanceHolder {
 		private static final Singleton3 instance = new Singleton3();
@@ -123,7 +129,7 @@ class Singleton3 {
 	}
 }
 
-@ThreadSafe
+@ThreadSafe(authors = { "zhangzhanfeng" })
 class Singleton4 {
 
 	private static final Object NULL = new Object();
