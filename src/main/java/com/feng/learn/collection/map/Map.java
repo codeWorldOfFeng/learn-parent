@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.feng.learn.collection.list;
+package com.feng.learn.collection.map;
 
 /**
  * @author feng

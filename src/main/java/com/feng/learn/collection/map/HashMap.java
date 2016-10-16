@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.feng.learn.collection.list;
+package com.feng.learn.collection.map;
 
 import java.util.Collection;
 import java.util.Set;
