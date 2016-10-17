@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.feng.annotation.thread;
+package com.feng.learn.annotation.thread;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
  *
  */
 @Target(ElementType.TYPE)
-public @interface ThreadSafe {
-	String[] authors();
+public @interface NotThreadSafe {
+	// String[] authors();
 }

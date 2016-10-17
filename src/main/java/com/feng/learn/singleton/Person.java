@@ -6,8 +6,8 @@ package com.feng.learn.singleton;
 import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicReference;
 
-import com.feng.annotation.thread.NotThreadSafe;
-import com.feng.annotation.thread.ThreadSafe;
+import com.feng.learn.annotation.thread.NotThreadSafe;
+import com.feng.learn.annotation.thread.ThreadSafe;
 
 /**
  * @author feng
