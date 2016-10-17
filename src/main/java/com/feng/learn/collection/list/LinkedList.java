@@ -379,10 +379,9 @@ public class LinkedList<E> implements List<E> {
 	@Override
 	public E set(int index, E element) {
 		rangeCheck(index);
-		Node<E> pre = preNodeForIndex(index);
-		Node<E> nodeToModify = pre.next;
-		E oldVal = nodeToModify.item;
-		nodeToModify.item = element;
+		Node<E> node = preNodeForIndex(index).next;
+		E oldVal = node.item;
+		node.item = element;
 		return oldVal;
 	}
 
