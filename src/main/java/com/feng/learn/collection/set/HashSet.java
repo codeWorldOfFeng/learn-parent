@@ -5,9 +5,9 @@ package com.feng.learn.collection.set;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 
-import com.feng.learn.collection.map.HashMap;
-import com.feng.learn.collection.map.Map;
+import com.feng.learn.collection.mapBetter.HashMap;
 
 /**
  * @author feng
@@ -32,7 +32,7 @@ public class HashSet<E> implements Set<E> {
 	 */
 	@Override
 	public boolean isEmpty() {
-		return 0 == datas.size();
+		return 0 == size();
 	}
 
 	/* (non-Javadoc)
@@ -48,7 +48,7 @@ public class HashSet<E> implements Set<E> {
 	 */
 	@Override
 	public Iterator<E> iterator() {
-		return null;
+		return datas.keySet().iterator();
 	}
 
 	/* (non-Javadoc)
@@ -56,8 +56,7 @@ public class HashSet<E> implements Set<E> {
 	 */
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		return datas.keySet().toArray();
 	}
 
 	/* (non-Javadoc)
@@ -65,8 +64,7 @@ public class HashSet<E> implements Set<E> {
 	 */
 	@Override
 	public <T> T[] toArray(T[] a) {
-		// TODO Auto-generated method stub
-		return null;
+		return datas.keySet().toArray(a);
 	}
 
 	/* (non-Javadoc)
@@ -74,7 +72,7 @@ public class HashSet<E> implements Set<E> {
 	 */
 	@Override
 	public boolean add(E e) {
-		return datas.put(e, PRESENT) == PRESENT;
+		return datas.put(e, PRESENT) != PRESENT;
 	}
 
 	/* (non-Javadoc)
@@ -82,8 +80,7 @@ public class HashSet<E> implements Set<E> {
 	 */
 	@Override
 	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		return datas.remove(o) == PRESENT;
 	}
 
 	/* (non-Javadoc)
@@ -120,8 +117,18 @@ public class HashSet<E> implements Set<E> {
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
+		return batchRemove(c, false);
+	}
+
+	private boolean batchRemove(Collection<?> c, boolean compliment) {
+		boolean modified = false;
+		for (Iterator<?> itr = c.iterator(); itr.hasNext();) {
+			Object o = itr.next();
+			if (contains(o) == compliment && remove(o)) {
+				modified = true;
+			}
+		}
+		return modified;
 	}
 
 	/* (non-Javadoc)
@@ -129,8 +136,7 @@ public class HashSet<E> implements Set<E> {
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
+		return batchRemove(c, true);
 	}
 
 	/* (non-Javadoc)
@@ -139,7 +145,6 @@ public class HashSet<E> implements Set<E> {
 	@Override
 	public void clear() {
 		datas.clear();
-		size = 0;
 	}
 
 }
