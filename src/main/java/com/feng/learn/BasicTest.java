@@ -11,6 +11,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -21,6 +22,7 @@ public class BasicTest {
 
 	/** List 删除元素 */
 	@Test
+	@Ignore
 	public void test() {
 		List<String> list = new ArrayList<String>(8);
 		String[] datas = { "a", "b", "c", "d", "e", "f" };
@@ -32,6 +34,11 @@ public class BasicTest {
 			}
 			System.out.println(list);
 		}
+	}
+
+	@Test
+	public void testInstanceOf() {
+		System.out.println(null instanceof Object);
 	}
 
 	/**
