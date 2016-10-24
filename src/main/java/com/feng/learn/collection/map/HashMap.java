@@ -447,7 +447,7 @@ public class HashMap<K, V> implements Map<K, V> {
 					lastRet = e;
 					K k = e.key;
 					e = e.next;
-					return k;
+					//return k;
 				}
 			}
 			throw new NoSuchElementException();
