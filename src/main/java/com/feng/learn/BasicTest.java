@@ -3,6 +3,7 @@
  */
 package com.feng.learn;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +37,54 @@ public class BasicTest {
 		}
 	}
 
-	@Test
+	//@Test
+	public void testAutoBox() {
+		Integer i1 = 100, i2 = 100, i3 = 150, i4 = 150;
+		System.out.println(i1 == i2);
+		System.out.println(i3 == i4);
+
+	}
+
+	//@Test
+	public void test22() {
+		Object o = null;
+		System.out.println(null != o && o.equals(getClass()));
+	}
+
+	//@Test
+	public void testString() {
+		String s1 = "Programming";
+		String s2 = new String("Programming");
+		String s3 = "Program" + "ming";
+		System.out.println(s1 == s2);
+		System.out.println(s1 == s3);
+		System.out.println(s1 == s2.intern());
+	}
+
+	//@Test
+	public void testClassLoader() {
+		ClassLoader cl = getClass().getClassLoader();
+		System.out.println(cl);
+		System.out.println(cl.getParent());
+		System.out.println(cl.getParent().getParent());
+	}
+
+	//@Test
+	public void testInterface() {
+		//Ia.i = 9;
+		System.out.println(Ib.i2);
+		System.out.println(Ib.i);
+	}
+
+	public void testStr() throws UnsupportedEncodingException {
+		String s1 = "你好";
+		byte[] b1 = s1.getBytes("GB2312");
+		String s2 = new String(b1, "ISO-8859-1");
+		byte[] b2 = s2.getBytes();
+		System.out.println(s2);
+	}
+
+	//@Test
 	public void testInstanceOf() {
 		System.out.println(null instanceof Object);
 	}
@@ -69,4 +117,12 @@ public class BasicTest {
 	public void tearDown() throws Exception {
 	}
 
+}
+
+interface Ia {
+	int i = 10;
+}
+
+interface Ib extends Ia {
+	int i2 = 9;
 }
