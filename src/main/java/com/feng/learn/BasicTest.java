@@ -21,12 +21,21 @@ import org.junit.Test;
  */
 public class BasicTest {
 
+	static class A {
+		static void print(List<String> list) {
+			for (Object o : list) {
+				System.out.println(o);
+			}
+		}
+	}
+
 	/** List 删除元素 */
 	@Test
 	@Ignore
 	public void test() {
 		List<String> list = new ArrayList<String>(8);
 		String[] datas = { "a", "b", "c", "d", "e", "f" };
+		A.print(list);
 		List<String> constantList = Arrays.asList("a", "b", "c", "d", "e", "f");
 		list.addAll(constantList);
 		for (int i = 0; i < list.size(); i++) {
@@ -69,7 +78,7 @@ public class BasicTest {
 		System.out.println(cl.getParent().getParent());
 	}
 
-	//@Test
+	@Test
 	public void testInterface() {
 		//Ia.i = 9;
 		System.out.println(Ib.i2);
