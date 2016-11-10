@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+    
+    default-lazy-init="default" default-autowire="default" 
+    default-init-method="init" default-destroy-method="destroy">
+	
+	<!-- 调用类的空构造器，若没有，抛出异常；若有，不管构造器是什么权限（private都可以），都可以 -->
+	<bean id="person" class="com.feng.learn.spring.model.Person" />
+	<!-- <bean name="person" class="com.feng.learn.spring.model.Person" /> -->
+	<!-- 通过constructor-arg参数来确定调用哪个构造器来实例化对象 -->
+	<bean class="com.feng.learn.spring.model.Person">
+		<constructor-arg type="java.lang.String" value="Person(java.lang.String, int)" />
+		<constructor-arg type="int" value="333" />
+		<constructor-arg index="2" ref="addr1"/>
+	</bean>
+	<bean class="com.feng.learn.spring.model.Person" c:name="c:name" c:age="22"></bean>
+	<!-- <bean class="com.feng.learn.spring.model.Person">
+		<constructor-arg type="java.lang.String" value="Person(java.lang.String, int)" />
+		<constructor-arg type="int" value="222" />
+	</bean> -->
+	
+	<!-- 调用类的静态方法来构造对象 -->
+	<bean class="com.feng.learn.spring.model.PersonFactory" factory-method="createPerson" />
+	<bean class="com.feng.learn.spring.model.PersonFactory" factory-method="createPerson" 
+		c:name="PersonFactory.createPerson(String, int)" c:age="444"/>
+	<bean id ="sPerson" class="com.feng.learn.singleton.Person" factory-method="getInstance"/>
+	<bean id ="sPerson2" class="com.feng.learn.singleton.Person" factory-method="getInstance" />
+	
+	<!-- 通过实例方法构造对象 -->
+	<bean id="personFactory" class="com.feng.learn.spring.model.PersonFactory" />
+	<bean factory-bean="personFactory" factory-method="getPerson" />
+	<bean factory-bean="personFactory" factory-method="getPerson" autowire="byName" 
+		c:name="PersonFactory.createPerson(String, int)" c:age="444"
+		p:age="5555"
+		p:addr-ref="addr2" >
+		<property name="name">
+			<!-- <value></value> -->
+			<null></null>
+		</property>
+	</bean>
+	<bean id="home" class="com.feng.learn.spring.model.Address">
+		<constructor-arg>
+			<value>home</value>
+		</constructor-arg>
+	</bean>
+	<bean id="work" class="com.feng.learn.spring.model.Address" p:addr="work" />
+	
+	<!-- 构造器注入 -->
+	<bean id="person2" class = "com.feng.learn.spring.model.Person">
+		<constructor-arg index="0" value="zhangfeng" />
+		<constructor-arg name="age" value="18"></constructor-arg>
+	</bean>	
+	<!-- 属性注入时，必须要有set方法 -->
+	<bean id="person3" class="com.feng.learn.spring.model.Person">
+		<property name="name" value="propertyInjection" />
+		<property name="age">
+			<value>22</value>
+		</property>
+	</bean>
+	<!-- 使用p命名空间和person3的注入方式是一样的都是通过setter方法注入 -->
+	<bean id="person4" class="com.feng.learn.spring.model.Person"
+		p:name="p:name"
+		p:age="33">
+	</bean>
+	<bean id="person5" class="com.feng.learn.spring.model.Person">
+		<property name="properties">
+			<value>
+				<!-- 注意value内不要加"号 -->
+				"name=zhangzhanfeng"
+				age=26
+			</value>
+		</property>
+	</bean>
+	
+	
+	<bean id="addr" class="com.feng.learn.spring.model.Address">
+		<constructor-arg>
+			<value>addr</value>
+		</constructor-arg>
+	</bean>
+	<bean id="addr1" class="com.feng.learn.spring.model.Address">
+		<constructor-arg>
+			<value>addr1</value>
+		</constructor-arg>
+	</bean>
+	<bean id="addr2" class="com.feng.learn.spring.model.Address">
+		<constructor-arg value="addr2"/>
+	</bean>
+	<bean id="person6" class="com.feng.learn.spring.model.Person" >
+		<property name="addr" ref="addr1"/>
+		<!-- 这里不是后定义后生效，只能定义一次 -->
+		<!-- <property name="addr">
+			<ref bean="addr2"/>
+		</property> -->
+		<property name="properties">
+			<value>
+				<!-- 注意value内不要加"号 -->
+				name=zhangzhanfeng
+				age=26
+			</value>
+		</property>
+	</bean>
+	<bean id="person7" name="person7Name" class="com.feng.learn.spring.model.Person" 
+		autowire="default" lazy-init="default" 
+		init-method="initMethod" destroy-method="destroyMethod"
+		scope="singleton" depends-on="person6"></bean>
+</beans>

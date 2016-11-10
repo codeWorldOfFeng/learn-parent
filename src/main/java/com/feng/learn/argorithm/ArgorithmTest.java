@@ -138,9 +138,19 @@ public class ArgorithmTest {
 
 	@Test
 	public void testQuickSort() {
-		int[] a = { 10, 8, 7, 6, 11, 15, 3, 2 };
+		int[] a = { 10, 10, 8, 7, 7, 7, 7, 6, 11, 15, 3, 3, 3, 2 };
 		quickSort(a, 0, a.length - 1);
 		System.out.println(a);
+	}
+
+	@Test
+	public void test2() {
+		int[] a = { 10, 10, 8, 7, 7, 7, 7, 6, 11, 15, 3, 3, 3, 2 };
+		quickSort(a, 0, a.length - 1);
+	}
+
+	public void reserver() {
+
 	}
 
 	public void quickSort(int[] a, int start, int end) {

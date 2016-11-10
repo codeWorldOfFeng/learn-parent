@@ -14,6 +14,7 @@ class Sneeze extends Annoyance {
 }
 
 class Human {
+	private volatile int a = 10;
 
 	public static void main(String[] args) throws Exception {
 		try {

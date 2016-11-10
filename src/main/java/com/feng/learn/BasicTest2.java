@@ -20,7 +20,83 @@ import org.junit.Test;
  */
 public class BasicTest2 {
 
+	/**
+	 * 对象成员变量的初始化
+	 * 一旦对象构造完成，所有的成员变量都会被初始化。这是java和c++最大的区别
+	 * byte/short/int/long 0
+	 * float/double 0.0
+	 * boolean false
+	 * char '\u0000' 空字符
+	 * Object null
+	 * 
+	 */
+	@SuppressWarnings("unused")
 	@Test
+	public void testObjectInit() {
+		A a = new A();
+	}
+
+	static class A {
+		private byte b;
+		private short s;
+		int i;
+		char c;
+		long l;
+		float f;
+		double d;
+		boolean bo;
+	}
+
+	/**
+	 * 数组初始化
+	 * byte/short/int/long 默认0
+	 * char 默认'\u0000' 空字符
+	 * float/double 默认 0.0
+	 * boolean 默认false
+	 * Object 默认null
+	 */
+	@SuppressWarnings("unused")
+	//@Test
+	public void testArrayDefaultInit() {
+		short[] sa = new short[1];
+		char[] ca = new char[1];
+		float[] fa = new float[1];
+		double[] da = new double[1];
+		boolean[] ba = new boolean[1];
+		Object[] oa = new Object[1];
+	}
+
+	@SuppressWarnings("unused")
+	//@Test
+	public void testBasicType() {
+		byte b = 5;
+		short s = 6;
+		char c = 244;
+		int i = 3424;
+		//int i2 = 3424L;
+		long l = 324;
+		// double不能转换成float
+		//float f = 33.4;
+		float f = 33.4F;
+		double d = 44.33;
+	}
+
+	/**
+	 * 3元操作符也是短路操作符
+	 * 
+	 */
+	//@Test
+	public void test3() {
+		int a = 1, b = 2;
+		int c = a + b >= 3 ? a++ : b++;
+		System.out.println(c);
+	}
+
+	/**
+	 * 字符串的编码解码
+	 * @throws UnsupportedEncodingException
+	 */
+	//@Test
 	public void testStrEncoding() throws UnsupportedEncodingException {
 		String str = "春节";
 		byte[] bs = str.getBytes("utf-8");

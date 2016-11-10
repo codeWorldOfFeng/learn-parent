@@ -15,6 +15,11 @@ import com.feng.learn.annotation.thread.ThreadSafe;
  */
 public class Person implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -531956225924260285L;
+
 	private static class InstanceHolder {
 		private static final Person instance = new Person("zhangfeng", 26);
 	}
