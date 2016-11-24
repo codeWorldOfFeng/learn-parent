@@ -16,6 +16,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.feng.learn.spring.model.Person;
+import com.feng.learn.spring.service.MeetingService;
 
 /**
  * @author feng
@@ -55,6 +56,7 @@ public class SpringTest {
 	}
 
 	//@Test
+	//spring-test-bean.xml
 	public void test() {
 		Person p = ctx.getBean("person", Person.class);
 		System.out.println(p);
@@ -63,7 +65,8 @@ public class SpringTest {
 		System.out.println(p1 == p2);
 	}
 
-	@Test
+	//@Test
+	//spring-test-bean.xml
 	public void testInjection() {
 		Person p1 = ctx.getBean("person2", Person.class), p2 = ctx.getBean("person3", Person.class),
 				p3 = ctx.getBean("person4", Person.class), p4 = ctx.getBean("person5", Person.class),
@@ -81,6 +84,17 @@ public class SpringTest {
 			Entry<String, Person> e = itr.next();
 			System.out.println(e.getKey() + ": " + e.getValue());
 		}
+	}
+
+	@SuppressWarnings("unused")
+	@Test
+	public void testPackageScan() {
+		Map<String, MeetingService> services = ctx.getBeansOfType(MeetingService.class);
+		for (Entry<String, MeetingService> e : services.entrySet()) {
+			MeetingService m = e.getValue();
+			System.out.println(e.getKey() + " --> " + m);
+		}
+
 	}
 
 }

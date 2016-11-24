@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * @author feng
  *
  */
-@Repository
+@Repository("meetingDao2")
 public class MeetingDao {
 
 }
